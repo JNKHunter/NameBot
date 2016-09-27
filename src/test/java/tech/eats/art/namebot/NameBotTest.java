@@ -15,6 +15,13 @@ public class NameBotTest {
 
     boolean verdict;
 
+    @NameCheck
+    public class badClassName{
+        private void BadMethodName(){
+
+        }
+    }
+
     @Before
     public void setUp() throws Exception {
         verdict = false;
@@ -43,6 +50,12 @@ public class NameBotTest {
     public void returnFalseOnCoolMethodName() throws Exception{
         boolean verdict = NameBot.isMethodNameTurrible("coolMethodName");
         assertFalse(verdict);
+    }
+
+    @Test
+    public void checkClassForTurribleNess() throws Exception{
+        boolean verdict =  NameBot.isClassTurrible(badClassName.class);
+        assertTrue(verdict);
     }
 
 }
