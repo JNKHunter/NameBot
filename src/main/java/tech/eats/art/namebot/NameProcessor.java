@@ -8,6 +8,8 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -25,8 +27,13 @@ public class NameProcessor extends AbstractProcessor {
     }
 
     @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        return Collections.singleton(tech.eats.art.namebot.NameCheck.class.getName());
+    }
+
+    @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
-        System.out.println("INIT name processor");
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING,"Hello from the processor!");
         super.init(processingEnv);
     }
 
@@ -34,7 +41,7 @@ public class NameProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
         try {
-            System.out.println("Calling process");
+
         } catch (Exception e) {
             e.printStackTrace();
         }

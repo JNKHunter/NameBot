@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by John on 9/26/16.
  */
+
 public class NameBot {
 
     public static boolean isClassNameBad(String className){
