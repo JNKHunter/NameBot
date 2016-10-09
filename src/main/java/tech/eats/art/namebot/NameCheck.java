@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
  * Created by John on 9/26/16.
  */
 @Target(ElementType.TYPE)
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.CLASS)
 public @interface NameCheck {
 }

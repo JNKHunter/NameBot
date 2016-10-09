@@ -1,13 +1,15 @@
 package tech.eats.art.namebot;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by John on 9/26/16.
  */
 public class NameBot {
 
-    public static boolean isClassNameTurrible(String className){
+    public static boolean isClassNameBad(String className){
 
         Boolean verdict = false;
 
@@ -18,7 +20,7 @@ public class NameBot {
         return verdict;
     }
 
-    public static boolean isMethodNameTurrible(String methodName){
+    public static boolean isMethodNameBad(String methodName){
         Boolean verdict = false;
 
         if(Character.isUpperCase(methodName.charAt(0))){
@@ -28,18 +30,22 @@ public class NameBot {
         return verdict;
     }
 
-    public static boolean isClassTurrible(Class<?> clazz) {
+    public static List<String> getBadMethodNames(Class<?> clazz) {
 
-        Boolean verdict = false;
 
         Method[] methods = clazz.getDeclaredMethods();
+        List<String> badMethodNames = new ArrayList<>();
 
         for(Method method : methods){
-            if(isMethodNameTurrible(method.getName())){
-                verdict = true;
+            if(isMethodNameBad(method.getName())){
+                badMethodNames.add(method.getName());
             }
         }
 
-        return verdict;
+        if(badMethodNames.isEmpty()) {
+            return null;
+        }else{
+            return badMethodNames;
+        }
     }
 }

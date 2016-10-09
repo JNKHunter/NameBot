@@ -3,7 +3,6 @@ package tech.eats.art.namebot;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -20,6 +19,10 @@ public class NameBotTest {
         private void BadMethodName(){
 
         }
+
+        private void AnotherBadMethodName(){
+
+        }
     }
 
     @Before
@@ -29,33 +32,33 @@ public class NameBotTest {
     }
 
     @Test
-    public void returnTrueOnTurribleClassName() throws Exception{
-        boolean verdict = NameBot.isClassNameTurrible("terribleClassName");
+    public void returnTrueOnBadClassName() throws Exception{
+        boolean verdict = NameBot.isClassNameBad("terribleClassName");
         assertTrue(verdict);
     }
 
     @Test
     public void returnFalseOnCoolClassName() throws Exception{
-        boolean verdict = NameBot.isClassNameTurrible("CoolClassName");
+        boolean verdict = NameBot.isClassNameBad("CoolClassName");
         assertFalse(verdict);
     }
 
     @Test
     public void returnPositiveOnTurribleMethodName() throws Exception{
-        boolean verdict = NameBot.isMethodNameTurrible("TerribleMethodName");
+        boolean verdict = NameBot.isMethodNameBad("TerribleMethodName");
         assertTrue(verdict);
     }
 
     @Test
     public void returnFalseOnCoolMethodName() throws Exception{
-        boolean verdict = NameBot.isMethodNameTurrible("coolMethodName");
+        boolean verdict = NameBot.isMethodNameBad("coolMethodName");
         assertFalse(verdict);
     }
 
     @Test
-    public void checkClassForTurribleNess() throws Exception{
-        boolean verdict =  NameBot.isClassTurrible(badClassName.class);
-        assertTrue(verdict);
+    public void returnListOfTerribleMethodNames() throws Exception{
+        List<String> badMethodNames =  NameBot.getBadMethodNames(badClassName.class);
+        assertNotNull(badMethodNames);
     }
 
 }
