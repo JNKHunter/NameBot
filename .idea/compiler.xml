@@ -15,8 +15,10 @@
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="false">
-        <processorPath useClasspath="true" />
+      <profile default="true" name="Default" enabled="true">
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/processor/build/libs" />
+        </processorPath>
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

@@ -21,6 +21,7 @@ import java.util.Set;
 public class NameProcessor extends AbstractProcessor {
 
 
+
     @Override
     public SourceVersion getSupportedSourceVersion() {
         return super.getSupportedSourceVersion();
@@ -33,7 +34,6 @@ public class NameProcessor extends AbstractProcessor {
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
-        processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING,"Hello from the processor!");
         super.init(processingEnv);
     }
 
@@ -41,6 +41,15 @@ public class NameProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
         try {
+
+            for(TypeElement el : annotations){
+               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getQualifiedName() + "/n");
+               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getSimpleName() + "/n");
+               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getEnclosedElements() + "/n");
+               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getEnclosingElement() + "/n");
+               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getNestingKind() + "/n");
+               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getKind() + "/n");
+           }
 
         } catch (Exception e) {
             e.printStackTrace();
