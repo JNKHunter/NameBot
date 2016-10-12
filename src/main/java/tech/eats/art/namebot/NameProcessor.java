@@ -49,7 +49,7 @@ public class NameProcessor extends AbstractProcessor {
                 if(el.getKind() == ElementKind.CLASS){
                     if(NameBot.isClassNameBad(el.getSimpleName().toString())){
                         this.processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
-                                "Rename your terrible class: " + el.getSimpleName() + "/n");
+                                "For fuck's sake Stephen. Rename your terrible class: " + el.getSimpleName() + "/n");
                     }
 
                 }
