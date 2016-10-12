@@ -7,6 +7,7 @@ import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 import java.util.Collections;
@@ -42,14 +43,13 @@ public class NameProcessor extends AbstractProcessor {
 
         try {
 
-            for(TypeElement el : annotations){
-               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getQualifiedName() + "/n");
-               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getSimpleName() + "/n");
-               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getEnclosedElements() + "/n");
-               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getEnclosingElement() + "/n");
-               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getNestingKind() + "/n");
-               this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getKind() + "/n");
-           }
+            for(Element el: roundEnv.getElementsAnnotatedWith(NameCheck.class)){
+                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getSimpleName() + "/n");
+                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getEnclosedElements() + "/n");
+                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getEnclosingElement() + "/n");
+                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, el.getKind() + "/n");
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
